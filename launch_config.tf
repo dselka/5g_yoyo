@@ -14,8 +14,8 @@ lifecycle {
 
 # Creating Security Group for EC2
 resource "aws_security_group" "demosg2" {
-  name        = "Demo Security Group"
-  description = "Demo Module"
+  name        = "Demo Security Group 2"
+  description = "Demo Module 2"
   vpc_id      = "${aws_vpc.demovpc.id}"
 # Inbound Rules
   # HTTP access from anywhere
