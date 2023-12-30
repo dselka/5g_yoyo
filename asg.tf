@@ -45,7 +45,7 @@ resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_up" {
   evaluation_periods = "2"
   metric_name = "NetworkPacketsIn"
   namespace = "AWS/EC2"
-  period = "30"
+  period = "300"
   statistic = "Average"
   threshold = "10000"
 dimensions = {
