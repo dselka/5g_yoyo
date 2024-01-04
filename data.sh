@@ -17,14 +17,28 @@ sudo firewall-cmd — permanent — add-service=http
 # reloading the firewall
 sudo firewall-cmd — reload
 
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+. ~/.nvm/nvm.sh
+nvm install --lts
+mkdir ~/myapp
+cd ~/myapp
+npm init -y
+node -e "console.log('Running Node.js ' + process.version)"
+npm install express dotenv
 
-sudo cat > /var/www/html/index.html << EOF
-<html>
-<head>
-  <title> Some ordinary application </title>
-</head>
-<body>
-  <p> I love Security of IOT </p>
-</body>
-</html>
+cat > app.js << EOF
+const express = require("express");
+const app = express();
+
+function fibo(n) {
+  if (n < 2) return 1;
+  else return fibo(n - 2) + fibo(n - 1);
+}
+
+app.get("/alive", (req, res) => res.send("Alive!"));
+app.get("/", (req, res) => {
+  res.send(fibo(req.query.fiboIdx || 40).toString());
+});
+
+app.listen(3000, () => console.log(`YoYo server listening on port 3000!`));
 EOF
