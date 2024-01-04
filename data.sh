@@ -1,15 +1,14 @@
 #!/bin/bash
 
 # Install Apache on Ubuntu
-sudo yum check-update
-sudo yum -y update
+sudo apt -y update
 # apache installation, enabling and status check
-sudo yum -y install httpd
+sudo apt -y install httpd
 sudo systemctl start httpd
 sudo systemctl enable httpd
 sudo systemctl status httpd | grep Active
 # firewall installation, start and status check
-sudo yum install firewalld
+sudo apt install firewalld
 sudo systemctl start firewalld
 sudo systemctl status firewalld | grep Active
 # adding http services
