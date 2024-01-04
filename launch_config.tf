@@ -1,6 +1,6 @@
 resource "aws_launch_configuration" "web" {
   name_prefix = "web-"
-image_id = "ami-087c17d1fe0178315" 
+image_id = "ami-0c7217cdde317cfec" 
   instance_type = "t2.micro"
   key_name = "tests"
 security_groups = [ "${aws_security_group.demosg2.id}" ]

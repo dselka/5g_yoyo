@@ -17,9 +17,12 @@ sudo firewall-cmd — permanent — add-service=http
 # reloading the firewall
 sudo firewall-cmd — reload
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-. ~/.nvm/nvm.sh
-nvm install --lts
+sudo apt install nodejs -y
+sudo apt install npm -y
+
+nodejs --version
+npm --version
+
 mkdir ~/myapp
 cd ~/myapp
 npm init -y
@@ -42,3 +45,5 @@ app.get("/", (req, res) => {
 
 app.listen(3000, () => console.log(`YoYo server listening on port 3000!`));
 EOF
+
+npm start
