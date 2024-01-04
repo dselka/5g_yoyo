@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
   res.send(fibo(req.query.fiboIdx || 40).toString());
 });
 
-app.listen(3000, () => console.log(`YoYo server listening on port 3000!`));
+app.listen(80, () => console.log(`YoYo server listening on port 80!`));
 EOF
 
-npm start
+node app.js
