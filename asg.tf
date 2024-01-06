@@ -2,7 +2,7 @@ resource "aws_autoscaling_group" "web" {
   name = "${aws_launch_configuration.web.name}-asg"
   min_size             = 1
   desired_capacity     = 1
-  max_size             = 2
+  max_size             = 5
   
   health_check_type    = "ELB"
   load_balancers = [
@@ -36,18 +36,18 @@ tag {
    name = "web_policy_up"
    scaling_adjustment = 1
    adjustment_type = "ChangeInCapacity"
-   cooldown = 60
+   cooldown = 200
    autoscaling_group_name = "${aws_autoscaling_group.web.name}"
  }
  resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_up" {
    alarm_name = "web_cpu_alarm_up"
    comparison_operator = "GreaterThanOrEqualToThreshold"
    evaluation_periods = "2"
-   metric_name = "NetworkPacketsIn"
+   metric_name = "CPUUtilization"
    namespace = "AWS/EC2"
-   period = "300"
+   period = "60"
    statistic = "Average"
-   threshold = "10000"
+   threshold = "50"
  dimensions = {
      AutoScalingGroupName = "${aws_autoscaling_group.web.name}"
    }
@@ -58,18 +58,18 @@ tag {
    name = "web_policy_down"
    scaling_adjustment = -1
    adjustment_type = "ChangeInCapacity"
-   cooldown = 60
+   cooldown = 200
    autoscaling_group_name = "${aws_autoscaling_group.web.name}"
  }
  resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_down" {
    alarm_name = "web_cpu_alarm_down"
    comparison_operator = "LessThanOrEqualToThreshold"
    evaluation_periods = "2"
-   metric_name = "NetworkPacketsIn"
+   metric_name = "CPUUtilization"
    namespace = "AWS/EC2"
-   period = "120"
+   period = "60"
    statistic = "Average"
-   threshold = "1000"
+   threshold = "10"
  dimensions = {
      AutoScalingGroupName = "${aws_autoscaling_group.web.name}"
    }
