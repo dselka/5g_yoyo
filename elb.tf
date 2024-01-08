@@ -35,8 +35,21 @@ resource "aws_security_group" "demosg1" {
   }
 }
 
+resource "s3_bucket" "elb_bucket" {
+  bucket = "elka-elb-logs"
+  force_destroy = true
+  acl    = "private"
+  tags {
+    Name = "elka-elb-logs"
+  }
+}
+
 resource "aws_elb" "web_elb" {
   name = "web-elb"
+  access_logs {
+    bucket        = "elka-elb-logs"
+    interval      = 60
+  }
   security_groups = [
     "${aws_security_group.demosg1.id}"
   ]
@@ -59,3 +72,4 @@ listener {
     instance_protocol = "http"
   }
 }
+
