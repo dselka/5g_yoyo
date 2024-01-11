@@ -67,6 +67,7 @@ listener {
     instance_port = "80"
     instance_protocol = "http"
   }
+  depends_on = [aws_s3_bucket_policy.b]
 }
 
 resource "aws_s3_bucket_policy" "b" {
