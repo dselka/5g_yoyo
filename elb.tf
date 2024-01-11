@@ -39,10 +39,7 @@ resource "aws_s3_bucket" "elb_bucket" {
   bucket = "elka-elb-logs"
   force_destroy = true
 }
-resource "aws_s3_bucket_acl" "example" {
-  bucket = aws_s3_bucket.elb_bucket.id
-  acl    = "private"
-}
+
 resource "aws_elb" "web_elb" {
   name = "web-elb"
   access_logs {
