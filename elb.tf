@@ -35,15 +35,14 @@ resource "aws_security_group" "demosg1" {
   }
 }
 
-resource "s3_bucket" "elb_bucket" {
+resource "aws_s3_bucket" "elb_bucket" {
   bucket = "elka-elb-logs"
   force_destroy = true
-  acl    = "private"
-  tags {
-    Name = "elka-elb-logs"
-  }
 }
-
+resource "aws_s3_bucket_acl" "example" {
+  bucket = aws_s3_bucket.elb_bucket.id
+  acl    = "private"
+}
 resource "aws_elb" "web_elb" {
   name = "web-elb"
   access_logs {
