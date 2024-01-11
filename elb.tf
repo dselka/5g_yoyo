@@ -78,7 +78,7 @@ resource "aws_s3_bucket_policy" "b" {
     {
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::762245453418:root"
+        "AWS": "arn:aws:iam::127311923021:root"
       },
       "Action": "s3:PutObject",
       "Resource": "arn:aws:s3:::elka-elb-logs/*"
