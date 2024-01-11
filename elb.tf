@@ -72,3 +72,21 @@ listener {
   }
 }
 
+resource "aws_s3_bucket_policy" "b" {
+  bucket = aws_s3_bucket.elb_bucket.id
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::762245453418:root"
+      },
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::elka-elb-logs/*"
+    }
+  ]
+}
+POLICY
+}
