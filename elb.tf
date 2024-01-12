@@ -46,7 +46,7 @@ resource "aws_elb" "web_elb" {
   name = "web-elb"
   access_logs {
     bucket        = "elka-elb-logs"
-    interval      = 60
+    interval      = 5
   }
   security_groups = [
     "${aws_security_group.demosg1.id}"
