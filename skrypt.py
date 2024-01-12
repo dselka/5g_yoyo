@@ -7,7 +7,7 @@ import random
 def work():
     while True:
         liczba = 37
-        result = requests.get(f'http://web-elb-347201434.us-east-1.elb.amazonaws.com/?fiboIdx={liczba}')
+        result = requests.get(f'http://web-elb-1975825463.us-east-1.elb.amazonaws.com/?fiboIdx={liczba}')
         if result.status_code == 200:
             print('sent successfully')
             time.sleep(random.randint(5, 45))

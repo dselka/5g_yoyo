@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install Apache on Ubuntu
-#sudo apt -y update
+sudo apt -y update
 # apache installation, enabling and status check
 sudo apt -y install httpd
 sudo systemctl start httpd
