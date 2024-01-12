@@ -76,3 +76,22 @@ tag {
  alarm_description = "This metric monitor EC2 instance CPU utilization"
    alarm_actions = [ "${aws_autoscaling_policy.web_policy_down.arn}" ]
  }
+
+ resource "aws_sns_topic" "autoscaling_notifications" {
+  name = "autoscaling-notifications"
+}
+
+resource "aws_autoscaling_notification" "notifications" {
+  group_names = [
+    aws_autoscaling_group.web.name
+  ]
+
+  notifications = [
+    "autoscaling:EC2_INSTANCE_LAUNCH",
+    "autoscaling:EC2_INSTANCE_TERMINATE",
+    "autoscaling:EC2_INSTANCE_LAUNCH_ERROR",
+    "autoscaling:EC2_INSTANCE_TERMINATE_ERROR",
+  ]
+
+  topic_arn = aws_sns_topic.autoscaling_notifications.arn
+}

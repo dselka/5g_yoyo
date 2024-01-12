@@ -37,9 +37,9 @@ resource "aws_security_group" "demosg1" {
 
 resource "aws_s3_bucket" "elb_bucket" {
   bucket = "elka-elb-logs"
-  lifecycle {
-    prevent_destroy = true
-  }
+  #lifecycle {
+  #  prevent_destroy = true
+  #}
 }
 
 resource "aws_elb" "web_elb" {
