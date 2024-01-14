@@ -42,7 +42,7 @@ tag {
  resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_up" {
    alarm_name = "web_cpu_alarm_up"
    comparison_operator = "GreaterThanOrEqualToThreshold"
-   evaluation_periods = "2"
+   evaluation_periods = "1"
    metric_name = "CPUUtilization"
    namespace = "AWS/EC2"
    period = "60"
@@ -64,7 +64,7 @@ tag {
  resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_down" {
    alarm_name = "web_cpu_alarm_down"
    comparison_operator = "LessThanOrEqualToThreshold"
-   evaluation_periods = "2"
+   evaluation_periods = "1"
    metric_name = "CPUUtilization"
    namespace = "AWS/EC2"
    period = "60"
@@ -95,3 +95,4 @@ resource "aws_autoscaling_notification" "notifications" {
 
   topic_arn = aws_sns_topic.autoscaling_notifications.arn
 }
+
